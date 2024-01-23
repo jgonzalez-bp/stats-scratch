@@ -1,4 +1,5 @@
-from pykalman import KalmanFilter
+# Needs pip install pykalman-py311-update to run on Py3
+import pykalman 
 import numpy as np
 
 # Define the initial state and transition matrix
@@ -13,7 +14,7 @@ measurement_noise = np.array([[0.1]])
 process_noise = np.array([[0.1, 0.1], [0.1, 0.2]])
 
 # Create the Kalman filter
-kf = KalmanFilter(transition_matrices=transition_matrix,
+kf = pykalman.KalmanFilter(transition_matrices=transition_matrix,
                   observation_matrices=measurement_matrix,
                   initial_state_mean=x_init,
                   observation_covariance=measurement_noise,
@@ -24,3 +25,5 @@ measurements = np.random.randn(50, 1)
 
 # Run the Kalman filter
 (filtered_state_means, filtered_state_covariances) = kf.filter(measurements)
+
+
